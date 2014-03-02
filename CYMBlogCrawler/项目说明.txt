@@ -1,0 +1,1 @@
+﻿本项目用于爬取程宇明豆瓣日志http://www.douban.com/people/oranjeruud/notes
