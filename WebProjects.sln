@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeiBoDataAnalysis2", "WeiBo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrackPassword", "CrackPassword\CrackPassword.csproj", "{78190D07-39E4-43DC-97E6-23524DEC4910}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeiZiTu", "MeiZiTu\MeiZiTu.csproj", "{26B86ACD-A7EE-48CE-B35C-587D0712C9E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{78190D07-39E4-43DC-97E6-23524DEC4910}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78190D07-39E4-43DC-97E6-23524DEC4910}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78190D07-39E4-43DC-97E6-23524DEC4910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26B86ACD-A7EE-48CE-B35C-587D0712C9E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26B86ACD-A7EE-48CE-B35C-587D0712C9E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26B86ACD-A7EE-48CE-B35C-587D0712C9E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26B86ACD-A7EE-48CE-B35C-587D0712C9E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
