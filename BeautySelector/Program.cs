@@ -294,6 +294,7 @@ namespace BeautySelector
             }
             #region 一天一妹：例：http://curator.im/girl_of_the_day/2014-02-25/
             //获取至2014年2月25日
+            //获取至2014年3月18日
             DateTime today = DateTime.Now;
             bool quitFlag = false;
             bool initFlag = true;
@@ -332,6 +333,7 @@ namespace BeautySelector
 
             #region 正妹流 例：http://curator.im/item/48/
             //2014年2月25日获取至6910
+            //2014年3月18日获取至7692
             //int startPosition = 6911;
             //for (int i = startPosition; i <= 7692; i++)
             //{
