@@ -161,9 +161,11 @@ namespace BeautySelector
                 }
                 if (!htmlContent.Equals(""))
                 {
+                    Console.WriteLine("第一个html读取完成！");
                     int startIndex = htmlContent.IndexOf("/girl/");
                     int endIndex = htmlContent.IndexOf("/", startIndex + 6) + 1;
                     string beautyMorePicturesLink = "http://curator.im" + htmlContent.Substring(startIndex, endIndex - startIndex);
+                    Console.WriteLine(beautyMorePicturesLink);
                     string htmlContentTwo = "";
                     httpWebRequest = HttpWebRequest.CreateHttp(beautyMorePicturesLink);
                     httpWebRequest.Method = "GET";
@@ -180,6 +182,7 @@ namespace BeautySelector
                         httpWebResponse.Close();
                         reader.Close();
                     }
+                    Console.WriteLine("第二个html读取完成！");
                     Lexer lexer = new Lexer(htmlContentTwo);
                     Parser parser = new Parser(lexer);
                     parser.AnalyzePage();
@@ -194,6 +197,7 @@ namespace BeautySelector
                     else
                     {
                         Console.WriteLine("获取正妹名称出错！ id=" + id);
+                        Console.Read();
                         return;
                     }
                     parser.AnalyzePage();
@@ -210,19 +214,19 @@ namespace BeautySelector
                             {
                                 imgFileNameSet.Add(imgUrl);
                                 currentImgFileNameSet.Add(imgUrl, saveBeautyFlowBasePath + beautyName + "_" + id + "_" + i + ".jpg");
-                                if (!File.Exists(saveBeautyFlowBasePath + beautyName + "_" + id + "_" + i + ".jpg"))
-                                {
-                                    WebClient wc = new WebClient();
-                                    wc.DownloadFileAsync(new Uri(imgUrl), saveBeautyFlowBasePath + beautyName + "_" + id + "_" + i + ".jpg");
-                                    wc.DownloadFileCompleted += wc_DownloadFileCompleted;
-                                    totalPicturesCount++;
-                                }
-                                imgFileNameSet.Add(imgUrl);
+                                //if (!File.Exists(saveBeautyFlowBasePath + beautyName + "_" + id + "_" + i + ".jpg"))
+                                //{
+                                //    WebClient wc = new WebClient();
+                                //    wc.DownloadFileAsync(new Uri(imgUrl), saveBeautyFlowBasePath + beautyName + "_" + id + "_" + i + ".jpg");
+                                //    wc.DownloadFileCompleted += wc_DownloadFileCompleted;
+                                //    totalPicturesCount++;
+                                //}
                             }
                         }
                         else
                         {
                             Console.WriteLine("获取正妹照片出错！ id=" + id);
+                            Console.Read();
                             return;
                         }
                     }
@@ -271,6 +275,16 @@ namespace BeautySelector
             fw.Close();
         }
 
+        static void OutputCurrentImgFileNameSet()
+        {
+            StreamWriter fw = new StreamWriter("CurrentImgFileNameSet.txt");
+            foreach (KeyValuePair<string, string> pair in currentImgFileNameSet)
+            {
+                fw.WriteLine(pair.Key + " " + pair.Value);
+            }
+            fw.Close();
+        }
+
         static void ReadImgFileNameSetFromFile()
         {
             StreamReader fr = new StreamReader(imgFileNameSetFileName);
@@ -279,6 +293,7 @@ namespace BeautySelector
                 imgFileNameSet.Add(fr.ReadLine());
             }
             fr.Close();
+            Console.WriteLine("已有照片列表中共用" + imgFileNameSet.Count + "条记录！");
         }
 
         static void Main(string[] args)
@@ -295,71 +310,72 @@ namespace BeautySelector
             #region 一天一妹：例：http://curator.im/girl_of_the_day/2014-02-25/
             //获取至2014年2月25日
             //获取至2014年3月18日
-            DateTime today = DateTime.Now;
-            bool quitFlag = false;
-            bool initFlag = true;
-            int initMonth = 2;
-            int initDay = 25;
-            for (int month = initMonth; month < 13; month++)
-            {
-                int day;
-                if (initFlag)
-                {
-                    initFlag = false;
-                    day = initDay;
-                }
-                else
-                {
-                    day = 1;
-                }
-                for (; day <= DateTime.DaysInMonth(2014, month); day++)
-                {
-                    DateTime currentDay = new DateTime(2014, month, day);
-                    if (currentDay.CompareTo(today) > 0)
-                    {
-                        quitFlag = true;
-                        break;
-                    }
-                    int resultNum = OneDayOneBeauty(currentDay.ToString("yyyy-MM-dd"));
-                    Console.WriteLine(currentDay.ToString("yyyy-MM-dd") + " 找到" + resultNum + "张照片！");
-                    totalPicturesCount += resultNum;
-                }
-                if (quitFlag)
-                {
-                    break;
-                }
-            }
+            //获取至2014年4月2日
+            //DateTime today = DateTime.Now;
+            //bool quitFlag = false;
+            //bool initFlag = true;
+            //int initMonth = 3;
+            //int initDay = 18;
+            //for (int month = initMonth; month < 13; month++)
+            //{
+            //    int day;
+            //    if (initFlag)
+            //    {
+            //        initFlag = false;
+            //        day = initDay;
+            //    }
+            //    else
+            //    {
+            //        day = 1;
+            //    }
+            //    for (; day <= DateTime.DaysInMonth(2014, month); day++)
+            //    {
+            //        DateTime currentDay = new DateTime(2014, month, day);
+            //        if (currentDay.CompareTo(today) > 0)
+            //        {
+            //            quitFlag = true;
+            //            break;
+            //        }
+            //        int resultNum = OneDayOneBeauty(currentDay.ToString("yyyy-MM-dd"));
+            //        Console.WriteLine(currentDay.ToString("yyyy-MM-dd") + " 找到" + resultNum + "张照片！");
+            //        totalPicturesCount += resultNum;
+            //    }
+            //    if (quitFlag)
+            //    {
+            //        break;
+            //    }
+            //}
             #endregion
 
             #region 正妹流 例：http://curator.im/item/48/
             //2014年2月25日获取至6910
             //2014年3月18日获取至7692
-            //int startPosition = 6911;
-            //for (int i = startPosition; i <= 7692; i++)
-            //{
-            //    BeautyFlow(i);
-            //    if ((i - startPosition + 1) % 100 == 0)
-            //    {
-            //        Console.WriteLine("完成" + (i - startPosition + 1) + "条！");
-            //        Thread.Sleep(20000);
-            //    }
-            //}
+            //2014年4月2日获取至8152
+            int startPosition = 7693;
+            for (int i = startPosition; i <= 8152; i++)
+            {
+                Console.WriteLine(i);
+                BeautyFlow(i);
+                Console.WriteLine("完成 " + i);
+                //Thread.Sleep(20000);
+            }
             #endregion
             OutputImgFileNameSet();
+            OutputCurrentImgFileNameSet();
             Console.WriteLine("共找到" + totalPicturesCount + "张照片！");
-            int lastProcess = totalDownloadPicturesCount;
-            while (totalDownloadPicturesCount < totalPicturesCount)
-            {
-                Thread.Sleep(20000);
-                Console.WriteLine("已获取" + totalDownloadPicturesCount + "张照片！");
-                lastProcess += totalDownloadPicturesCount;
-                if (lastProcess == 8 * totalDownloadPicturesCount)
-                {
-                    Console.WriteLine("有" + (totalPicturesCount - totalDownloadPicturesCount) + "张照片下载失败，重新下载！");
-                    ReDownloadPictures();
-                    lastProcess = totalDownloadPicturesCount;
-                }
-            }
+            //int lastProcess = totalDownloadPicturesCount;
+            //while (totalDownloadPicturesCount < totalPicturesCount)
+            //{
+            //    Thread.Sleep(20000);
+            //    Console.WriteLine("已获取" + totalDownloadPicturesCount + "张照片！");
+            //    lastProcess += totalDownloadPicturesCount;
+            //    if (lastProcess == 8 * totalDownloadPicturesCount)
+            //    {
+            //        Console.WriteLine("有" + (totalPicturesCount - totalDownloadPicturesCount) + "张照片下载失败，重新下载！");
+            //        ReDownloadPictures();
+            //        lastProcess = totalDownloadPicturesCount;
+            //    }
+            //}
             Console.Write("按任意键继续……");
             Console.ReadLine();
         }
