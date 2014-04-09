@@ -1,3 +1,9 @@
 ﻿本项目能够爬取http://curator.im中“一天一妹”和“正妹流”两个栏目中的正妹照片。
 已爬取照片的链接地址保存在ImgFileNameSet.txt中，每次程序运行前读取该文件，程序运行后把新爬取照片的链接加入后重新写回该文件。
 若出现下载不成功的照片（即照片文件已创建但大小为零），程序会调用ReDownloadPictures函数重新下载，但是该函数未经测试。
+
+//————2014年4月9日修改————//
+当前代码不再具有下载图片功能，而是爬取网页上的图片链接，通过迅雷下载，再修改原始图片名。
+第一步：读取ImgFileNameSet.txt，爬取“正妹流”/“一日一妹”中的图片链接，保存在CurrentImgFileNameSet.txt和ImgFileDownload.txt中。两个文件分别用于保存原始图片链接和图片名的映射关系以及图片链接集合（方便复制到迅雷内）；
+第二步：从文件ImgFileDownload.txt中复制图片链接到迅雷，通过迅雷下载；
+第三步：把迅雷下载图片的文件夹路径放在DirectoryInfo directory的构造函数中，读取对应文件夹下的图片，并读取ImgFileDownload.txt中图片链接和文件名的映射，把图片修改文件名并保存到BeautyFlow/OneDayOneBeauty中。

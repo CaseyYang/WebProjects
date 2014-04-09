@@ -87,15 +87,18 @@ namespace BeautySelector
                             }
                             if (!imgFileNameSet.Contains(imgUrl))
                             {
+                                int startIndex = imgUrl.IndexOf("/media.curator.im/images/");
+                                imgUrl = "http:/" + imgUrl.Substring(startIndex);
                                 imgFileNameSet.Add(imgUrl);
                                 string imgName = imgNode.GetAttribute("ALT");
                                 if (!Directory.Exists(saveOneDayOneBeautyBasePath + imgName))
                                 {
                                     Directory.CreateDirectory(saveOneDayOneBeautyBasePath + imgName);
                                 }
-                                WebClient wc = new WebClient();
-                                wc.DownloadFileAsync(new Uri(imgUrl), saveOneDayOneBeautyBasePath + imgName + "\\" + imgName + " (" + fileIndex + ").jpg");
-                                wc.DownloadFileCompleted += wc_DownloadFileCompleted;
+                                currentImgFileNameSet.Add(imgUrl, saveOneDayOneBeautyBasePath + imgName + "\\" + imgName + " (" + fileIndex + ").jpg");
+                                //WebClient wc = new WebClient();
+                                //wc.DownloadFileAsync(new Uri(imgUrl), saveOneDayOneBeautyBasePath + imgName + "\\" + imgName + " (" + fileIndex + ").jpg");
+                                //wc.DownloadFileCompleted += wc_DownloadFileCompleted;
                                 fileIndex++;
                             }
                         }
@@ -278,11 +281,14 @@ namespace BeautySelector
         static void OutputCurrentImgFileNameSet()
         {
             StreamWriter fw = new StreamWriter("CurrentImgFileNameSet.txt");
+            StreamWriter fw2 = new StreamWriter("ImgFileDownload.txt");//此文件用于得到便于迅雷下载的图片URL
             foreach (KeyValuePair<string, string> pair in currentImgFileNameSet)
             {
                 fw.WriteLine(pair.Key + " " + pair.Value);
+                fw2.WriteLine(pair.Key);
             }
             fw.Close();
+            fw2.Close();
         }
 
         static void ReadImgFileNameSetFromFile()
@@ -298,6 +304,7 @@ namespace BeautySelector
 
         static void Main(string[] args)
         {
+            #region 第一步：从网站上读取待下载图片的链接，保存链接到文件；
             if (File.Exists(imgFileNameSetFileName))
             {
                 ReadImgFileNameSetFromFile();
@@ -310,55 +317,55 @@ namespace BeautySelector
             #region 一天一妹：例：http://curator.im/girl_of_the_day/2014-02-25/
             //获取至2014年2月25日
             //获取至2014年3月18日
-            //获取至2014年4月2日
-            //DateTime today = DateTime.Now;
-            //bool quitFlag = false;
-            //bool initFlag = true;
-            //int initMonth = 3;
-            //int initDay = 18;
-            //for (int month = initMonth; month < 13; month++)
-            //{
-            //    int day;
-            //    if (initFlag)
-            //    {
-            //        initFlag = false;
-            //        day = initDay;
-            //    }
-            //    else
-            //    {
-            //        day = 1;
-            //    }
-            //    for (; day <= DateTime.DaysInMonth(2014, month); day++)
-            //    {
-            //        DateTime currentDay = new DateTime(2014, month, day);
-            //        if (currentDay.CompareTo(today) > 0)
-            //        {
-            //            quitFlag = true;
-            //            break;
-            //        }
-            //        int resultNum = OneDayOneBeauty(currentDay.ToString("yyyy-MM-dd"));
-            //        Console.WriteLine(currentDay.ToString("yyyy-MM-dd") + " 找到" + resultNum + "张照片！");
-            //        totalPicturesCount += resultNum;
-            //    }
-            //    if (quitFlag)
-            //    {
-            //        break;
-            //    }
-            //}
+            //获取至2014年4月9日
+            DateTime today = DateTime.Now;
+            bool quitFlag = false;
+            bool initFlag = true;
+            int initMonth = 3;
+            int initDay = 18;
+            for (int month = initMonth; month < 13; month++)
+            {
+                int day;
+                if (initFlag)
+                {
+                    initFlag = false;
+                    day = initDay;
+                }
+                else
+                {
+                    day = 1;
+                }
+                for (; day <= DateTime.DaysInMonth(2014, month); day++)
+                {
+                    DateTime currentDay = new DateTime(2014, month, day);
+                    if (currentDay.CompareTo(today) > 0)
+                    {
+                        quitFlag = true;
+                        break;
+                    }
+                    int resultNum = OneDayOneBeauty(currentDay.ToString("yyyy-MM-dd"));
+                    Console.WriteLine(currentDay.ToString("yyyy-MM-dd") + " 找到" + resultNum + "张照片！");
+                    totalPicturesCount += resultNum;
+                }
+                if (quitFlag)
+                {
+                    break;
+                }
+            }
             #endregion
 
             #region 正妹流 例：http://curator.im/item/48/
             //2014年2月25日获取至6910
             //2014年3月18日获取至7692
-            //2014年4月2日获取至8152
-            int startPosition = 7693;
-            for (int i = startPosition; i <= 8152; i++)
-            {
-                Console.WriteLine(i);
-                BeautyFlow(i);
-                Console.WriteLine("完成 " + i);
-                //Thread.Sleep(20000);
-            }
+            //2014年4月9日获取至8450
+            //int startPosition = 7693;
+            //for (int i = startPosition; i <= 8450; i++)
+            //{
+            //    Console.WriteLine(i);
+            //    BeautyFlow(i);
+            //    Console.WriteLine("完成 " + i);
+            //    //Thread.Sleep(20000);
+            //}
             #endregion
             OutputImgFileNameSet();
             OutputCurrentImgFileNameSet();
@@ -376,8 +383,51 @@ namespace BeautySelector
             //        lastProcess = totalDownloadPicturesCount;
             //    }
             //}
-            Console.Write("按任意键继续……");
-            Console.ReadLine();
+            //Console.Write("按任意键继续……");
+            //Console.ReadLine();
+            #endregion
+
+            #region 第二步：从文件ImgFileDownload.txt中复制待下载的图片链接，使用迅雷下载
+            #endregion
+
+            #region 第三步：把文件从迅雷下载分别复制到OneDayOneBeauty/BeautyFlow文件夹中，并根据CurrentImgFileNameSet.txt中的键值对修改文件名
+            //读入CurrentImgFileNameSet.txt
+            StreamReader fr = new StreamReader("CurrentImgFileNameSet.txt");
+            while (!fr.EndOfStream)
+            {
+                string rawStr = fr.ReadLine();
+                string[] l = rawStr.Split(' ');
+                int index = l[0].LastIndexOf('/');
+                if (l.Length > 2)
+                {
+                    for (int i = 2; i < l.Length; i++)
+                    {
+                        l[1] += l[i];
+                    }
+                }
+                currentImgFileNameSet.Add(l[0].Substring(index + 1), l[1]);
+            }
+            fr.Close();
+            Console.WriteLine("CurrentImgFileNameSet.txt读入完毕！");
+            DirectoryInfo directory = new DirectoryInfo(@"D:\Download\图片任务组_20140409_1950");//此处填入迅雷下载图片的文件夹路径
+            foreach (var file in directory.GetFiles())
+            {
+                string fileName = currentImgFileNameSet[file.Name];
+                int invalidCount = 0;
+                int invalidFileNameChar = fileName.IndexOfAny(System.IO.Path.GetInvalidFileNameChars());
+                while (invalidFileNameChar != -1)
+                {
+                    invalidCount++;
+                    if (invalidCount > 2)
+                    {
+                        fileName = fileName.Remove(invalidFileNameChar, 1);
+                    }
+                    invalidFileNameChar = fileName.IndexOfAny(System.IO.Path.GetInvalidFileNameChars(), invalidFileNameChar + 1);
+                }
+                file.CopyTo(fileName);
+            }
+            Console.WriteLine("文件复制完毕！");
+            #endregion
         }
     }
 }
