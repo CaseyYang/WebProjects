@@ -427,6 +427,8 @@ namespace BeautySelector
                 file.CopyTo(fileName);
             }
             Console.WriteLine("文件复制完毕！");
+            Console.WriteLine("按任意键继续……");
+            Console.Read();
             #endregion
         }
     }
