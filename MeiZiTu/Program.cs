@@ -24,10 +24,11 @@ namespace MeiZiTu
         static void Main(string[] args)
         {
             //2014年3月18日获取至4110
+            //2014年4月18日获取至4174
             #region Step 1: 找出所有存在的页面（即返回代码为200的），把生成的程序放在多个文件夹下同时跑，程序运行结束后在文件夹下会得到url.txt，里面保存着所有存在的页面链接；2014年3月18日最新页面为4110
             //StreamWriter fw = new StreamWriter("url.txt");
             //string baseUrl = "http://www.meizitu.com/a/";
-            //for (int i = 3800; i < 4000; i++)
+            //for (int i = 4111; i < 4175; i++)
             //{
             //    string url = baseUrl + i + ".html";
             //    try
@@ -108,9 +109,9 @@ namespace MeiZiTu
                         if (!shouldDownloadSet.ContainsKey(picLink))
                         {
                             shouldDownloadSet.Add(picLink, fileName);
-                            WebClient wc = new WebClient();
-                            wc.DownloadFileAsync(new Uri(picLink), fileName);
-                            wc.DownloadFileCompleted += wc_DownloadFileCompleted;
+                            //WebClient wc = new WebClient();
+                            //wc.DownloadFileAsync(new Uri(picLink), fileName);
+                            //wc.DownloadFileCompleted += wc_DownloadFileCompleted;
                         }
                         picLinkIndex++;
                     }
@@ -121,23 +122,18 @@ namespace MeiZiTu
                 }
             }
             Console.WriteLine("共找到" + shouldDownloadSet.Count + "张照片！");
-            int lastProcess = haveDownloadSet.Count;
-            while (haveDownloadSet.Count < shouldDownloadSet.Count)
-            {
-                if (lastProcess > 7 * haveDownloadSet.Count)
-                {
-                    break;
-                }
-                lastProcess += haveDownloadSet.Count;
-                Console.WriteLine("已获取" + haveDownloadSet.Count + "张照片！");
-                Thread.Sleep(20000);
-            }
             StreamWriter fw = new StreamWriter("Download.txt");
             foreach (KeyValuePair<string, string> fileName in shouldDownloadSet)
             {
                 fw.WriteLine(fileName.Key + " " + fileName.Value);
             }
             fw.Close();
+            StreamWriter fw2 = new StreamWriter("Download2.txt");
+            foreach (KeyValuePair<string, string> fileName in shouldDownloadSet)
+            {
+                fw.WriteLine(fileName.Key);
+            }
+            fw2.Close();
             #endregion
 
             #region Step 3: 根据Download.txt和保存图片的文件夹，重新下载文件大小为0的图片
