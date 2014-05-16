@@ -25,7 +25,7 @@ namespace MeiZiTu
         {
             //2014年3月18日获取至4110
             //2014年4月18日获取至4174
-            //2014年5月14日获取至4219
+            //2014年5月15日获取至4219
             #region Step 1: 找出所有存在的页面（即返回代码为200的），把生成的程序放在多个文件夹下同时跑，程序运行结束后在文件夹下会得到url.txt，里面保存着所有存在的页面链接；2014年3月18日最新页面为4110
             //StreamWriter fw = new StreamWriter("url.txt");
             //string baseUrl = "http://www.meizitu.com/a/";
