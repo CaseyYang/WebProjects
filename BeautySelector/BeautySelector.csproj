@@ -40,7 +40,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Winista.HtmlParser">
-      <HintPath>..\..\..\..\..\Subjects\Computer\Winista网页解析类库\Winista.HtmlParser.dll</HintPath>
+      <HintPath>..\Winista.HtmlParser.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
