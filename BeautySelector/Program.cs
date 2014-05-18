@@ -353,9 +353,9 @@ namespace BeautySelector
             //2014年2月25日获取至6910
             //2014年3月18日获取至7692
             //2014年4月9日获取至8450
-            //2014年5月17日获取至9654
+            //2014年5月18日获取至9666
             int startPosition = 8451;
-            for (int i = startPosition; i <= 9654; i++)
+            for (int i = startPosition; i <= 9666; i++)
             {
                 BeautyFlow(i);
                 Console.WriteLine("完成 " + i);
