@@ -107,7 +107,8 @@ namespace MeiZiTu
                     int picLinkIndex = 0;
                     foreach (string picLink in picLinks)
                     {
-                        string fileName = basePath + title + "_" + picLinkIndex + ".jpg";
+                        //string fileName = basePath + title + "_" + picLinkIndex + ".jpg";
+                        string fileName = title + "_" + picLinkIndex + ".jpg";
                         if (!shouldDownloadSet.ContainsKey(picLink))
                         {
                             agent.AddTask(picLink, fileName, "D:\\Download\\", "", "", 1, 0, 1);
