@@ -31,6 +31,8 @@ namespace BeautySelector
         //爬取“正妹流”所用过滤器
         static NodeClassFilter BeautyNameFilter = new NodeClassFilter(typeof(TitleTag));//得到正妹名字的过滤器
         static AndFilter BeautyFlowImgFilter = new AndFilter(new NodeClassFilter(typeof(ImageTag)), new HasAttributeFilter("itemprop", "contentURL"));//得到正妹图片的过滤器
+        //迅雷下载代理对象
+        static ThunderAgentLib.AgentClass thunderAgent = new ThunderAgentLib.AgentClass();
 
         static void GetPicUrlsFromBeautyPersonalPage(ImageTag imgNode, int fileIndex, int type)
         {
@@ -82,6 +84,7 @@ namespace BeautySelector
                         Directory.CreateDirectory(completeImgName);
                     }
                     currentImgFileNameSet.Add(imgUrl, completeImgName + "\\" + imgName + " (" + fileIndex + ").jpg");
+                    thunderAgent.AddTask2(imgUrl, imgName + " (" + fileIndex + ").jpg", "D:\\Download\\" + completeImgName + "\\", "", "", 1, 0, 1);
                     fileIndex++;
                 }
             }
@@ -91,6 +94,7 @@ namespace BeautySelector
                 return;
             }
         }
+
         static int OneDayOneBeauty(string date)
         {
             try
@@ -365,8 +369,10 @@ namespace BeautySelector
 
             #region 输出本次要下载的图片链接到文件ImgFileDownload.txt、CurrentImgFileNameSet.txt和ImgFileNameSet中
             OutputImgFileNameSet();
-            OutputCurrentImgFileNameSet();
+            thunderAgent.CommitTasks2(1);
+            //OutputCurrentImgFileNameSet();
             Console.WriteLine("共找到" + totalPicturesCount + "张照片！");
+            Console.Read();
             #endregion
 
             //int lastProcess = totalDownloadPicturesCount;
@@ -389,7 +395,7 @@ namespace BeautySelector
             #region 第二步：从文件ImgFileDownload.txt中复制待下载的图片链接，使用迅雷下载
             #endregion
 
-            #region 第三步：把文件从迅雷下载分别复制到OneDayOneBeauty/BeautyFlow文件夹中，并根据CurrentImgFileNameSet.txt中的键值对修改文件名
+            #region 第三步：把文件从迅雷下载分别复制到OneDayOneBeauty/BeautyFlow文件夹中，并根据CurrentImgFileNameSet.txt中的键值对修改文件名。在调用迅雷API后，此部分代码可能没用了
             //读入CurrentImgFileNameSet.txt
             //StreamReader fr = new StreamReader("CurrentImgFileNameSet.txt");
             //while (!fr.EndOfStream)
