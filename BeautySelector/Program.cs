@@ -317,11 +317,12 @@ namespace BeautySelector
             //获取至2014年3月18日
             //获取至2014年4月9日
             //获取至2014年5月16日
+            //获取至2014年6月23日
             //DateTime today = DateTime.Now;
             //bool quitFlag = false;
             //bool initFlag = true;
-            //int initMonth = 4;
-            //int initDay = 9;
+            //int initMonth = 5;
+            //int initDay = 16;
             //for (int month = initMonth; month < 13; month++)
             //{
             //    int day;
@@ -358,13 +359,14 @@ namespace BeautySelector
             //2014年3月18日获取至7692
             //2014年4月9日获取至8450
             //2014年5月18日获取至9666
-            int startPosition = 8451;
-            for (int i = startPosition; i <= 9666; i++)
-            {
-                BeautyFlow(i);
-                Console.WriteLine("完成 " + i);
-                //Thread.Sleep(20000);
-            }
+            //2014年6月23日获取至10182
+            //int startPosition = 9667;
+            //for (int i = startPosition; i <= 10182; i++)
+            //{
+            //    BeautyFlow(i);
+            //    Console.WriteLine("完成 " + i);
+            //    //Thread.Sleep(20000);
+            //}
             #endregion
 
             #region 输出本次要下载的图片链接到文件ImgFileDownload.txt、CurrentImgFileNameSet.txt和ImgFileNameSet中
