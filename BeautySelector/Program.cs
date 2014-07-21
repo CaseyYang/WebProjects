@@ -318,7 +318,7 @@ namespace BeautySelector
             //获取至2014年4月9日
             //获取至2014年5月16日
             //获取至2014年6月23日
-            //获取至2014年7月21日
+            //获取至2014年7月21日（未获取成功，因为关站了= =）
             DateTime today = DateTime.Now;
             bool quitFlag = false;
             bool initFlag = true;
@@ -393,9 +393,6 @@ namespace BeautySelector
             //}
             //Console.Write("按任意键继续……");
             //Console.ReadLine();
-            #endregion
-
-            #region 第二步：从文件ImgFileDownload.txt中复制待下载的图片链接，使用迅雷下载
             #endregion
 
             #region 第三步：把文件从迅雷下载分别复制到OneDayOneBeauty/BeautyFlow文件夹中，并根据CurrentImgFileNameSet.txt中的键值对修改文件名。在调用迅雷API后，此部分代码可能没用了
