@@ -318,40 +318,41 @@ namespace BeautySelector
             //获取至2014年4月9日
             //获取至2014年5月16日
             //获取至2014年6月23日
-            //DateTime today = DateTime.Now;
-            //bool quitFlag = false;
-            //bool initFlag = true;
-            //int initMonth = 5;
-            //int initDay = 16;
-            //for (int month = initMonth; month < 13; month++)
-            //{
-            //    int day;
-            //    if (initFlag)
-            //    {
-            //        initFlag = false;
-            //        day = initDay;
-            //    }
-            //    else
-            //    {
-            //        day = 1;
-            //    }
-            //    for (; day <= DateTime.DaysInMonth(2014, month); day++)
-            //    {
-            //        DateTime currentDay = new DateTime(2014, month, day);
-            //        if (currentDay.CompareTo(today) > 0)
-            //        {
-            //            quitFlag = true;
-            //            break;
-            //        }
-            //        int resultNum = OneDayOneBeauty(currentDay.ToString("yyyy-MM-dd"));
-            //        Console.WriteLine(currentDay.ToString("yyyy-MM-dd") + " 找到" + resultNum + "张照片！");
-            //        totalPicturesCount += resultNum;
-            //    }
-            //    if (quitFlag)
-            //    {
-            //        break;
-            //    }
-            //}
+            //获取至2014年7月21日
+            DateTime today = DateTime.Now;
+            bool quitFlag = false;
+            bool initFlag = true;
+            int initMonth = 6;
+            int initDay = 23;
+            for (int month = initMonth; month < 13; month++)
+            {
+                int day;
+                if (initFlag)
+                {
+                    initFlag = false;
+                    day = initDay;
+                }
+                else
+                {
+                    day = 1;
+                }
+                for (; day <= DateTime.DaysInMonth(2014, month); day++)
+                {
+                    DateTime currentDay = new DateTime(2014, month, day);
+                    if (currentDay.CompareTo(today) > 0)
+                    {
+                        quitFlag = true;
+                        break;
+                    }
+                    int resultNum = OneDayOneBeauty(currentDay.ToString("yyyy-MM-dd"));
+                    Console.WriteLine(currentDay.ToString("yyyy-MM-dd") + " 找到" + resultNum + "张照片！");
+                    totalPicturesCount += resultNum;
+                }
+                if (quitFlag)
+                {
+                    break;
+                }
+            }
             #endregion
 
             #region 正妹流 例：http://curator.im/item/48/
