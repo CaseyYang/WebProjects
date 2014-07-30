@@ -27,10 +27,11 @@ namespace MeiZiTu
             //2014年4月18日获取至4174
             //2014年5月18日获取至4223
             //2014年6月23日获取至4296
+            //2014年7月30日获取至4380
             #region Step 1: 找出所有存在的页面（即返回代码为200的），把生成的程序放在多个文件夹下同时跑，程序运行结束后在文件夹下会得到url.txt，里面保存着所有存在的页面链接；2014年3月18日最新页面为4110
             //StreamWriter fw = new StreamWriter("url.txt");
             //string baseUrl = "http://www.meizitu.com/a/";
-            //for (int i = 4224; i < 4297; i++)
+            //for (int i = 4297; i < 4381; i++)
             //{
             //    string url = baseUrl + i + ".html";
             //    try
@@ -62,73 +63,73 @@ namespace MeiZiTu
             #endregion
 
             #region Step 2: 根据url.txt爬取页面中的妹子图片
-            //ThunderAgentLib.AgentClass agent = new ThunderAgentLib.AgentClass();
-            //StreamReader fr = new StreamReader("url.txt");
-            //List<string> links = new List<string>();
-            //while (!fr.EndOfStream)
-            //{
-            //    links.Add(fr.ReadLine());
-            //}
-            //fr.Close();
-            //foreach (string link in links)
-            //{
-            //    try
-            //    {
-            //        HttpWebRequest httpWebRequest = HttpWebRequest.CreateHttp(link);
-            //        httpWebRequest.Method = "GET";
-            //        HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            //        StreamReader reader = new StreamReader(new BufferedStream(httpWebResponse.GetResponseStream(), 4 * 200 * 1024), Encoding.GetEncoding("gb2312"));
-            //        string htmlContent = reader.ReadToEnd();
-            //        httpWebResponse.Close();
-            //        reader.Close();
-            //        int startIndex = 0;
-            //        startIndex = htmlContent.IndexOf("<title>");
-            //        int endIndex = htmlContent.IndexOf(" | 妹子图");
-            //        string title = htmlContent.Substring(startIndex + 7, endIndex - startIndex - 7);
-            //        List<string> picLinks = new List<string>();
-            //        do
-            //        {
-            //            startIndex = htmlContent.IndexOf("src=\"http://www.meizitu.com/wp-content/uploads/", startIndex);
-            //            if (startIndex != -1)
-            //            {
-            //                endIndex = htmlContent.IndexOf(".jpg", startIndex);
-            //                startIndex += 5;
-            //                string picLink = htmlContent.Substring(startIndex, endIndex + 4 - startIndex);
-            //                if (picLink.IndexOf("limg.jpg") == -1 && picLink.IndexOf("hezuo") == -1)
-            //                {
-            //                    picLinks.Add(picLink);
-            //                }
-            //            }
-            //            else
-            //            {
-            //                break;
-            //            }
-            //        } while (true);
-            //        int picLinkIndex = 0;
-            //        foreach (string picLink in picLinks)
-            //        {
-            //            //string fileName = basePath + title + "_" + picLinkIndex + ".jpg";
-            //            string fileName = title + "_" + picLinkIndex + ".jpg";
-            //            if (!shouldDownloadSet.ContainsKey(picLink))
-            //            {
-            //                agent.AddTask(picLink, fileName, "D:\\Download\\", "", "", 1, 0, 1);
-            //                shouldDownloadSet.Add(picLink, fileName);
-            //                //WebClient wc = new WebClient();
-            //                //wc.DownloadFileAsync(new Uri(picLink), fileName);
-            //                //wc.DownloadFileCompleted += wc_DownloadFileCompleted;
-            //            }
-            //            picLinkIndex++;
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Console.WriteLine(link + "出错！");
-            //    }
-            //}
-            //Console.WriteLine("共找到" + shouldDownloadSet.Count + "张图片！");
-            //agent.CommitTasks2(1);
-            //Console.WriteLine("开始使用迅雷下载图片！等待下载完成……");
-            //Console.Read();
+            ThunderAgentLib.AgentClass agent = new ThunderAgentLib.AgentClass();
+            StreamReader fr = new StreamReader("url.txt");
+            List<string> links = new List<string>();
+            while (!fr.EndOfStream)
+            {
+                links.Add(fr.ReadLine());
+            }
+            fr.Close();
+            foreach (string link in links)
+            {
+                try
+                {
+                    HttpWebRequest httpWebRequest = HttpWebRequest.CreateHttp(link);
+                    httpWebRequest.Method = "GET";
+                    HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                    StreamReader reader = new StreamReader(new BufferedStream(httpWebResponse.GetResponseStream(), 4 * 200 * 1024), Encoding.GetEncoding("gb2312"));
+                    string htmlContent = reader.ReadToEnd();
+                    httpWebResponse.Close();
+                    reader.Close();
+                    int startIndex = 0;
+                    startIndex = htmlContent.IndexOf("<title>");
+                    int endIndex = htmlContent.IndexOf(" | 妹子图");
+                    string title = htmlContent.Substring(startIndex + 7, endIndex - startIndex - 7);
+                    List<string> picLinks = new List<string>();
+                    do
+                    {
+                        startIndex = htmlContent.IndexOf("src=\"http://www.meizitu.com/wp-content/uploads/", startIndex);
+                        if (startIndex != -1)
+                        {
+                            endIndex = htmlContent.IndexOf(".jpg", startIndex);
+                            startIndex += 5;
+                            string picLink = htmlContent.Substring(startIndex, endIndex + 4 - startIndex);
+                            if (picLink.IndexOf("limg.jpg") == -1 && picLink.IndexOf("hezuo") == -1)
+                            {
+                                picLinks.Add(picLink);
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    } while (true);
+                    int picLinkIndex = 0;
+                    foreach (string picLink in picLinks)
+                    {
+                        //string fileName = basePath + title + "_" + picLinkIndex + ".jpg";
+                        string fileName = title + "_" + picLinkIndex + ".jpg";
+                        if (!shouldDownloadSet.ContainsKey(picLink))
+                        {
+                            agent.AddTask(picLink, fileName, "D:\\Download\\", "", "", 1, 0, 1);
+                            shouldDownloadSet.Add(picLink, fileName);
+                            //WebClient wc = new WebClient();
+                            //wc.DownloadFileAsync(new Uri(picLink), fileName);
+                            //wc.DownloadFileCompleted += wc_DownloadFileCompleted;
+                        }
+                        picLinkIndex++;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(link + "出错！");
+                }
+            }
+            Console.WriteLine("共找到" + shouldDownloadSet.Count + "张图片！");
+            agent.CommitTasks2(1);
+            Console.WriteLine("开始使用迅雷下载图片！等待下载完成……");
+            Console.Read();
 
             //此部分代码作用是把要下载的图片链接和文件名的映射保存到文件Download.txt中，手工拷入迅雷中下载；在调用迅雷的API后可能没有必要了
             //StreamWriter fw = new StreamWriter("Download.txt");
