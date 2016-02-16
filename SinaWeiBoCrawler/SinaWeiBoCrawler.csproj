@@ -48,7 +48,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Winista.HtmlParser">
-      <HintPath>..\..\..\..\..\..\Download\WinistaDownload\Winista.HtmlParser.dll</HintPath>
+      <HintPath>..\Winista.HtmlParser.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

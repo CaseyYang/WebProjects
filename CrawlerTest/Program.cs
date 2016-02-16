@@ -69,7 +69,7 @@ namespace CrawlerTest
         static void Main(string[] args)
         {
             StreamReader reader = new StreamReader("weibo1-0.html");
-            string content="";
+            string content = "";
             while (!reader.EndOfStream)
             {
                 string str = reader.ReadLine();

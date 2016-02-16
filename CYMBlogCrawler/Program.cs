@@ -2,11 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Winista.Text.HtmlParser;
 using Winista.Text.HtmlParser.Filters;
 using Winista.Text.HtmlParser.Lex;
@@ -116,7 +112,7 @@ namespace CYMBlogCrawler
                     #endregion
                     #region 保存为mht文件
                     //msg.HTMLBody = htmlContent;
-                    msg.CreateMHTMLBody(link,CDO.CdoMHTMLFlags.cdoSuppressNone,"","");
+                    msg.CreateMHTMLBody(link, CDO.CdoMHTMLFlags.cdoSuppressNone, "", "");
                     ADODB.Stream stream = msg.GetStream();
                     stream.SaveToFile(title + ".mht", ADODB.SaveOptionsEnum.adSaveCreateOverWrite);
                     #endregion

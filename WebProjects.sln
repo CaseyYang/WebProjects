@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmazonCnCrawler", "AmazonCnCrawler\AmazonCnCrawler.csproj", "{0BF7F4F4-1AC2-4B97-8C71-0D85858856EA}"
 EndProject
@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "项目用到的第三方类
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PictureDownloader", "PictureDownloader\PictureDownloader.csproj", "{D6BF36D3-29DE-4738-858B-7A42C1ED128D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QQPhoneContactAndSMS", "QQPhoneContactAndSMS\QQPhoneContactAndSMS.csproj", "{5EFDBA69-25DA-4CA4-9F24-4A0464237D1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -98,6 +100,10 @@ Global
 		{D6BF36D3-29DE-4738-858B-7A42C1ED128D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6BF36D3-29DE-4738-858B-7A42C1ED128D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6BF36D3-29DE-4738-858B-7A42C1ED128D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EFDBA69-25DA-4CA4-9F24-4A0464237D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EFDBA69-25DA-4CA4-9F24-4A0464237D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EFDBA69-25DA-4CA4-9F24-4A0464237D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EFDBA69-25DA-4CA4-9F24-4A0464237D1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
