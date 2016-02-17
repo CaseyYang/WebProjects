@@ -62,7 +62,7 @@ callLogFile = ElementTree.parse(callLogFilePath)
 for callLog in callLogFile.findall("CallLog"):
 	flag = callLog.find("Flags").text
 	if flag == "1":
-		flage = "呼入"
+		flag = "呼入"
 	duration = callLog.find("Duration").text + "秒"
 	startTime = callLog.find("StartTime").text
 	phoneNumber = callLog.find("PhoneNumber").text
@@ -70,8 +70,11 @@ for callLog in callLogFile.findall("CallLog"):
 		phoneNumber = "未知号码"
 	contactName = callLog.find("ContactName").text
 	if contactName == None:
-		if phoneNumber in invertedContacts.keys():
-			contactName = next(iter(invertedContacts[phoneNumber].keys()))
+		tmpNumber=phoneNumber
+		if len(tmpNumber)>11:
+			tmpNumber=tmpNumber[-11:]
+		if tmpNumber in invertedContacts.keys():
+			contactName = next(iter(invertedContacts[tmpNumber].keys()))
 		else:
 			contactName = phoneNumber
 	if contactName not in callLogs.keys():
