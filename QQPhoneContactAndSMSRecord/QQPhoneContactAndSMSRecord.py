@@ -75,16 +75,18 @@ for sms in smsFile.findall("SMS"):
 #resultInvertedContact.close()
 
 #输出短信记录到文件
-resultSMS = open("sms.txt","w")
+#windows中txt文件默认使用GBK编码；
+#使用utf-8编码使得原始记录中的各种符号可以输出
+resultSMS = open("sms.txt","w",encoding='utf-8')
 for name in smsRecords:
 	resultSMS.write("\n"+name+":\n")
 	for record in smsRecords[name]:
-		resultSMS.write(record["date"]+"\t")
-		resultSMS.write(record["sender"]+"\t")
 		try:
+			resultSMS.write(record["date"]+"\t")
+			resultSMS.write(record["sender"]+"\t")		
 			resultSMS.write(record["content"])
 		except BaseException:
-			print(record["date"])
+			print("Error")
 		finally:
 			resultSMS.write("\n")
 resultSMS.close()
