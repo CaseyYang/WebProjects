@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>ANN展示</title>
+    <style type="text/css">
+        #toolbar {
+            background-color: lightgray;
+            width: 21%;
+            height: 100%;
+            float: left;
+            visibility: visible;
+        }
+
+        #map_canvas {
+            position: fixed;
+            top: 0px;
+            right: 0px;
+            width: 79%;
+            height: 100%;
+        }
+
+        .classguide {
+            padding-bottom: 5px;
+            padding-top: 2px;
+            font-size: small;
+        }
+
+        .classdemoname {
+            padding-bottom: 5px;
+            padding-top: 2px;
+            font-size: larger;
+            font-family: 'Microsoft YaHei';
+            font-weight: 100;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false" type="text/javascript"></script>
+    <script src="ann.js" type="text/javascript"></script>
+</head>
+<body onload="Initialize('Shanghai')" style="height: 100%; margin: 0px">
+    <div id="toolbar">
+        <div style="padding-bottom: 5px">
+            <table>
+                <tr>
+                    <td>
+                        <img src="logo_fd.jpg" alt="复旦logo" height="90px" width="90px" /></td>
+                    <td>
+                        <img src="logo_mdm.PNG" alt="实验室logo" height="90px" width="90px" /></td>
+                </tr>
+            </table>
+            <div class="classdemoname">
+                ANN查询演示
+            </div>
+            使用步骤：
+        </div>
+        <div class="classguide">
+            一、在地图上点击确定参与计算的好友位置<br />
+            二、点击按钮计算距离所有好友最近的餐馆
+        </div>
+        <button id="GetNearestRestaurant" onclick="GetNearestRestaurant()">查询</button>
+        <button id="ClearAll" onclick="ClearAll()">清空</button>
+        <button id="ShowMBRs" onclick="GetRTreeMBRs()">显示RTree结构</button>
+        <div id="restaurantinfo">
+            查询结果：
+            <table id="restaurantinfotable"></table>
+        </div>
+    </div>
+    <div id="map_canvas" style="float: right"></div>
+</body>
+</html>

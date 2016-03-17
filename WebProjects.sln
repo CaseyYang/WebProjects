@@ -38,6 +38,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PictureDownloader", "Pictur
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "QQPhoneContactAndSMSRecord", "QQPhoneContactAndSMSRecord\QQPhoneContactAndSMSRecord.pyproj", "{B96F61BD-3EDB-41B8-AD89-44F491A929E1}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ANNDemo", "ANNDemo\", "{D18A2649-4024-4EA1-9D7D-F072CE405379}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_48123"
+		Debug.AspNetCompiler.PhysicalPath = "ANNDemo\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_48123\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_48123"
+		Release.AspNetCompiler.PhysicalPath = "ANNDemo\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_48123\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "48123"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,6 +122,10 @@ Global
 		{D6BF36D3-29DE-4738-858B-7A42C1ED128D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B96F61BD-3EDB-41B8-AD89-44F491A929E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B96F61BD-3EDB-41B8-AD89-44F491A929E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D18A2649-4024-4EA1-9D7D-F072CE405379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D18A2649-4024-4EA1-9D7D-F072CE405379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D18A2649-4024-4EA1-9D7D-F072CE405379}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{D18A2649-4024-4EA1-9D7D-F072CE405379}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
