@@ -31,6 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeiZiTu", "MeiZiTu\MeiZiTu.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "项目用到的第三方类库", "项目用到的第三方类库", "{3B01CE9D-EF01-41FC-92CC-9F1004D6AF7A}"
 	ProjectSection(SolutionItems) = preProject
+		HTMLParser.chm = HTMLParser.chm
 		Winista.HtmlParser.dll = Winista.HtmlParser.dll
 	EndProjectSection
 EndProject
