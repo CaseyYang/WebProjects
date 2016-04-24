@@ -154,3 +154,9 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+/DjangoWebProject1/env
+/packages
+/DjangoWebProject1/app/__pycache__
+/DjangoWebProject1/DjangoWebProject1/__pycache__
+/DjangoWebProject1/app/migrations/__pycache__
+/DjangoWebProject1/app/migrations

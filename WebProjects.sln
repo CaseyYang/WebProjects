@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmazonCnCrawler", "AmazonCnCrawler\AmazonCnCrawler.csproj", "{0BF7F4F4-1AC2-4B97-8C71-0D85858856EA}"
 EndProject
@@ -61,6 +61,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ANNDemo", "ANNDemo\", "{D18
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtractAddressFromDianPinRawData", "ExtractAddressFromDianPinRawData\ExtractAddressFromDianPinRawData.csproj", "{4D9914AE-7632-49D0-9959-812315BD1B6D}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DjangoWebProject1", "DjangoWebProject1\DjangoWebProject1.pyproj", "{4387F359-18D5-4EE6-B6FE-4BD9389F6A06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -134,6 +136,10 @@ Global
 		{4D9914AE-7632-49D0-9959-812315BD1B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D9914AE-7632-49D0-9959-812315BD1B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D9914AE-7632-49D0-9959-812315BD1B6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4387F359-18D5-4EE6-B6FE-4BD9389F6A06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4387F359-18D5-4EE6-B6FE-4BD9389F6A06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4387F359-18D5-4EE6-B6FE-4BD9389F6A06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4387F359-18D5-4EE6-B6FE-4BD9389F6A06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
